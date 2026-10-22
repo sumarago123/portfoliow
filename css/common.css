@@ -1,0 +1,63 @@
+/* =========================================================
+   Shared by both themes
+   - shows/hides theme-specific markup
+   - theme toggle button
+   - circular reveal when switching themes (View Transitions)
+   ========================================================= */
+
+/* elements marked data-only="light|dark" only render in that theme */
+[data-theme="light"] [data-only="dark"],
+[data-theme="dark"] [data-only="light"] { display: none !important; }
+
+/* ---------- theme toggle ---------- */
+.theme-toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.theme-toggle svg {
+  grid-area: 1 / 1;
+  width: 22px; height: 22px;
+  fill: none;
+  stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s;
+}
+.theme-toggle__moon { fill: currentColor; }
+
+/* light theme: show moon (go dark) */
+[data-theme="light"] .theme-toggle {
+  background: #111014; color: #ffd23f;
+  border: 3px solid #111014;
+  box-shadow: 3px 3px 0 #ff5fa2;
+}
+[data-theme="light"] .theme-toggle__sun { opacity: 0; transform: rotate(-90deg) scale(0.4); }
+
+/* dark theme: show sun (go light) */
+[data-theme="dark"] .theme-toggle {
+  background: #c6ff3d; color: #0a0a10;
+  border: 2px solid #0a0a10;
+  box-shadow: 3px 3px 0 #e8e8f2;
+}
+[data-theme="dark"] .theme-toggle__moon { opacity: 0; transform: rotate(90deg) scale(0.4); }
+
+.theme-toggle:hover { transform: translate(-2px, -2px); }
+.theme-toggle:active { transform: translate(3px, 3px); box-shadow: none !important; }
+.theme-toggle:focus-visible { outline: 3px dashed currentColor; outline-offset: 3px; }
+
+@media (max-width: 820px) {
+  .theme-toggle { margin-left: auto; }
+  .theme-toggle ~ .nav__toggle { margin-left: 0 !important; }
+}
+
+/* ---------- theme switch animation ---------- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }

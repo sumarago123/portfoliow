@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angelo Sumarago — Web & Web3 Developer</title>
+  <meta name="description" content="Portfolio of Angelo Sumarago, 4th-year BSIT student and Web / Web3 developer based in Cebu City, Philippines." />
+  <meta name="theme-color" content="#f4efe4" id="themeColor" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <!-- Light = neo-brutal glass (default), Dark = crypto edition. Only one is active at a time. -->
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/style.css" id="cssLight" />
+  <link rel="stylesheet" href="css/dark.css" id="cssDark" media="not all" />
+  <script>
+    /* apply the saved theme before first paint (no flash) */
+    (function () {
+      var t = "light";
+      try { t = localStorage.getItem("as-theme") || "light"; } catch (e) {}
+      if (t !== "dark") t = "light";
+      document.documentElement.setAttribute("data-theme", t);
+      document.getElementById("cssLight").media = t === "light" ? "all" : "not all";
+      document.getElementById("cssDark").media = t === "dark" ? "all" : "not all";
+      document.getElementById("themeColor").content = t === "dark" ? "#07070c" : "#f4efe4";
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ================= BACKGROUND ================= -->
+  <div class="bg" aria-hidden="true">
+    <!-- light -->
+    <span class="shape shape--circle" data-only="light"></span>
+    <span class="shape shape--square" data-only="light"></span>
+    <span class="shape shape--pill" data-only="light"></span>
+    <span class="shape shape--ring" data-only="light"></span>
+    <svg class="shape shape--star" data-only="light" viewBox="0 0 100 100"><path d="M50 0 L61 39 L100 50 L61 61 L50 100 L39 61 L0 50 L39 39 Z"/></svg>
+    <span class="cursor-blob" data-only="light"></span>
+    <!-- dark -->
+    <div class="bg__grid" data-only="dark"></div>
+    <span class="orb orb--lime" data-only="dark"></span>
+    <span class="orb orb--violet" data-only="dark"></span>
+    <span class="orb orb--cyan" data-only="dark"></span>
+    <span class="orb orb--pink" data-only="dark"></span>
+    <span class="token token--a" data-only="dark">◆</span>
+    <span class="token token--b" data-only="dark">⬡</span>
+    <span class="token token--c" data-only="dark">$</span>
+  </div>
+
+  <!-- ================= NAV ================= -->
+  <header class="nav-wrap">
+    <nav class="nav glass">
+      <a href="#home" class="logo" aria-label="Angelo Sumarago, home">
+        <span data-only="light">AS<span class="logo__accent">.</span></span>
+        <span data-only="dark"><span class="logo__mark">◆</span>ANGELO<span class="logo__dot">_</span></span>
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills"><span data-only="light">Skills</span><span data-only="dark">Stack</span></a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li data-only="light"><a href="#experience">Experience</a></li>
+        <li data-only="light"><a href="#education">Education</a></li>
+        <li data-only="dark"><a href="#chain">Chain</a></li>
+      </ul>
+      <span class="nav__status mono" data-only="dark"><span class="pulse"></span>Online</span>
+      <a href="#contact" class="btn btn--yellow btn--lime btn--sm nav__cta">
+        <span data-only="light">Contact</span><span data-only="dark">Let's connect</span>
+      </a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme">
+        <!-- sun (shown in dark, switches to light) -->
+        <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg>
+        <!-- moon (shown in light, switches to dark) -->
+        <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
+      </button>
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="home">
+      <canvas class="hero__chart" id="chart" data-only="dark" aria-hidden="true"></canvas>
+      <div class="container hero__grid">
+        <div class="hero__text">
+          <p class="chip chip--mint reveal">
+            <span class="dot" data-only="light"></span><span class="pulse" data-only="dark"></span>
+            <span data-only="light">Based in Cebu City, PH</span>
+            <span data-only="dark">gm — based in Cebu City, PH</span>
+          </p>
+          <h1 class="hero__title reveal">
+            <span class="line">Angelo</span>
+            <span class="line line--outline line--grad">Sumarago</span>
+          </h1>
+          <p class="hero__role reveal">
+            <span class="mono" data-only="light">&gt;</span><span class="prompt" data-only="dark">$</span>
+            <span class="typed" id="typed">Web Developer</span><span class="caret"><span data-only="light">_</span><span data-only="dark">▍</span></span>
+          </p>
+          <p class="hero__intro reveal">
+            4th-year BSIT student at <strong>Cebu Eastern College</strong>, working across data analysis,
+            web development and Web3.
+          </p>
+          <div class="hero__actions reveal">
+            <a href="#projects" class="btn btn--pink btn--lime">
+              <span data-only="light">See my work</span><span data-only="dark">View projects</span> <span aria-hidden="true">→</span>
+            </a>
+            <a href="#contact" class="btn btn--glass btn--ghost">Get in touch</a>
+          </div>
+        </div>
+
+        <!-- light: photo window -->
+        <div class="hero__visual reveal" data-only="light">
+          <span class="deco deco--hero" aria-hidden="true"></span>
+          <div class="photo-card glass">
+            <div class="photo-card__bar">
+              <span class="dots"><i></i><i></i><i></i></span>
+              <span class="mono">angelo.png</span>
+            </div>
+            <div class="photo-card__img">
+              <img src="assets/profile.png" alt="Portrait of Angelo Sumarago" />
+            </div>
+          </div>
+          <span class="sticker sticker--yellow">4th Year<br />BSIT</span>
+          <span class="sticker sticker--blue">Web3 ✦</span>
+          <svg class="hero__star" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0 L61 39 L100 50 L61 61 L50 100 L39 61 L0 50 L39 39 Z"/></svg>
+        </div>
+
+        <!-- dark: NFT card -->
+        <div class="hero__visual reveal" data-only="dark">
+          <div class="nft" id="nft">
+            <div class="nft__inner glass">
+              <div class="nft__head mono">
+                <span>TOKEN #0001</span>
+                <span class="nft__verified">✓ Verified</span>
+              </div>
+              <div class="nft__img">
+                <img src="assets/profile.png" alt="Portrait of Angelo Sumarago" />
+                <span class="nft__shine"></span>
+              </div>
+              <div class="nft__meta">
+                <div>
+                  <span class="nft__label mono">Owner</span>
+                  <strong>Angelo Sumarago</strong>
+                </div>
+                <div class="nft__right">
+                  <span class="nft__label mono">Rarity</span>
+                  <strong class="nft__rarity">4th Yr BSIT</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="sticker sticker--violet">Web3 ⛓</span>
+          <span class="sticker sticker--lime">Dev ◆</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- light: marquee -->
+    <div class="marquee" data-only="light" aria-hidden="true">
+      <div class="marquee__track">
+        <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>Solidity</span><b>✦</b><span>Python</span><b>✦</b><span>Django</span><b>✦</b><span>Figma</span><b>✦</b><span>Web3</span><b>✦</b>
+        <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JavaScript</span><b>✦</b><span>Solidity</span><b>✦</b><span>Python</span><b>✦</b><span>Django</span><b>✦</b><span>Figma</span><b>✦</b><span>Web3</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- dark: ticker -->
+    <div class="ticker" data-only="dark" aria-hidden="true">
+      <div class="ticker__track">
+        <span><b>$HTML</b> <i class="up">▲</i></span>
+        <span><b>$CSS</b> <i class="up">▲</i></span>
+        <span><b>$JS</b> <i class="up">▲</i></span>
+        <span><b>$SOLIDITY</b> <i class="up">▲</i></span>
+        <span><b>$PYTHON</b> <i class="up">▲</i></span>
+        <span><b>$DJANGO</b> <i class="up">▲</i></span>
+        <span><b>$FIGMA</b> <i class="up">▲</i></span>
+        <span><b>$WEB3</b> <i class="up">▲</i></span>
+        <span><b>$HTML</b> <i class="up">▲</i></span>
+        <span><b>$CSS</b> <i class="up">▲</i></span>
+        <span><b>$JS</b> <i class="up">▲</i></span>
+        <span><b>$SOLIDITY</b> <i class="up">▲</i></span>
+        <span><b>$PYTHON</b> <i class="up">▲</i></span>
+        <span><b>$DJANGO</b> <i class="up">▲</i></span>
+        <span><b>$FIGMA</b> <i class="up">▲</i></span>
+        <span><b>$WEB3</b> <i class="up">▲</i></span>
+      </div>
+    </div>
+
+    <!-- dark: stats -->
+    <section class="stats container" data-only="dark">
+      <div class="stat card glass reveal">
+        <span class="stat__label mono">Years in crypto</span>
+        <span class="stat__value"><span class="count" data-to="3">0</span>+</span>
+        <span class="stat__sub mono">2021 → 2024</span>
+      </div>
+      <div class="stat card glass reveal">
+        <span class="stat__label mono">Projects built</span>
+        <span class="stat__value"><span class="count" data-to="2">0</span></span>
+        <span class="stat__sub mono">Web3 app + Figma UI</span>
+      </div>
+      <div class="stat card glass reveal">
+        <span class="stat__label mono">Tools in stack</span>
+        <span class="stat__value"><span class="count" data-to="7">0</span></span>
+        <span class="stat__sub mono">Vanilla first</span>
+      </div>
+      <div class="stat card glass reveal">
+        <span class="stat__label mono">Year level</span>
+        <span class="stat__value"><span class="count" data-to="4">0</span><small>th</small></span>
+        <span class="stat__sub mono">BSIT · CEC</span>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__num section__tag mono"><span data-only="dark">// </span>01</span>
+          <h2 class="section__title">About <span class="grad">me</span></h2>
+        </div>
+
+        <div class="about__grid has-deco">
+          <span class="deco deco--about" data-only="light" aria-hidden="true"></span>
+          <article class="card glass about__bio reveal">
+            <p class="lead" data-only="light">Hey, I'm <mark>Angelo</mark> — a developer who likes things simple, fast and honest.</p>
+            <p class="lead" data-only="dark">A developer who likes things <mark>simple</mark>, fast and honest.</p>
+            <p>
+              I'm in my 4th year of BS Information Technology at Cebu Eastern College. Most of what I build starts
+              with plain HTML, CSS and JavaScript, with no frameworks unless the project needs one. On the Web3 side,
+              I've worked with Solidity, and I was the data analysis lead on WhiteMarket, a peer-to-peer marketplace with escrow.
+            </p>
+            <p>
+              From 2021 to 2024 I managed digital assets as an Axie Infinity assistant manager and traded crypto
+              spot, which sharpened the analytical side of me. That's also why business analysis is on my radar.
+            </p>
+          </article>
+
+          <div class="roles">
+            <div class="role card glass reveal" style="--c: var(--accent-1)">
+              <span class="role__icon mono">&lt;/&gt;</span>
+              <h3>Web Developer</h3>
+            </div>
+            <div class="role card glass reveal" style="--c: var(--accent-2)">
+              <span class="role__icon mono">⛓</span>
+              <h3>Web3 Developer</h3>
+            </div>
+            <div class="role card glass reveal" style="--c: var(--accent-3)">
+              <span class="role__icon mono">⚙</span>
+              <h3>Aspiring IT Technician</h3>
+            </div>
+            <div class="role card glass reveal" style="--c: var(--accent-4)">
+              <span class="role__icon mono">↗</span>
+              <h3>Aspiring Business Analyst</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__num section__tag mono"><span data-only="dark">// </span>02</span>
+          <h2 class="section__title">
+            <span data-only="light">Skills &amp; stack</span>
+            <span data-only="dark">Skill <span class="grad">holdings</span></span>
+          </h2>
+        </div>
+
+        <div class="skills__grid holdings__grid has-deco">
+          <span class="deco deco--skills" data-only="light" aria-hidden="true"></span>
+
+          <!-- shared: what I do -->
+          <article class="card glass skills__card skills reveal">
+            <h3 class="card__label skills__label mono">What I do</h3>
+            <ul class="skill-list">
+              <li><span class="skill-list__n mono">01</span> Data Analysis</li>
+              <li><span class="skill-list__n mono">02</span> Web Development</li>
+              <li><span class="skill-list__n mono">03</span> Blockchain / Web3</li>
+              <li><span class="skill-list__n mono">04</span> Collaboration</li>
+              <li><span class="skill-list__n mono">05</span> Flexibility</li>
+            </ul>
+            <div class="skills__level">
+              <span class="skills__level-label mono">Where I'm at</span>
+              <p>Most comfortable with data analysis and basic HTML, CSS and JavaScript. Solidity, Python, Django and Figma are tools I've used on projects and am still getting better at.</p>
+            </div>
+            <p class="skills__note mono" data-only="dark">// vanilla first, frameworks when they earn it</p>
+          </article>
+
+          <!-- light: stack tags -->
+          <article class="card glass stack__card reveal" data-only="light">
+            <h3 class="card__label">Languages &amp; frameworks</h3>
+            <div class="stack">
+              <span class="tag" style="--c: var(--orange)">HTML</span>
+              <span class="tag" style="--c: var(--blue)">CSS</span>
+              <span class="tag" style="--c: var(--yellow)">JavaScript</span>
+              <span class="tag" style="--c: #c3b5ff">Solidity</span>
+              <span class="tag" style="--c: var(--mint)">Python</span>
+              <span class="tag" style="--c: #7fd18b">Django</span>
+              <span class="tag" style="--c: var(--pink)">Figma</span>
+            </div>
+            <p class="stack__note mono">// vanilla first, frameworks when they earn it</p>
+          </article>
+
+          <!-- dark: wallet -->
+          <article class="card glass wallet reveal" data-only="dark">
+            <div class="wallet__head">
+              <span class="mono">Wallet · Languages &amp; frameworks</span>
+              <span class="wallet__addr mono">7 assets</span>
+            </div>
+            <ul class="assets">
+              <li><span class="coin" style="--c:#ff8a3d">H</span><b>HTML</b><span class="assets__type mono">Markup</span><span class="assets__tag mono">Core</span></li>
+              <li><span class="coin" style="--c:#4da3ff">C</span><b>CSS</b><span class="assets__type mono">Styling</span><span class="assets__tag mono">Core</span></li>
+              <li><span class="coin" style="--c:#ffd84d">J</span><b>JavaScript</b><span class="assets__type mono">Language</span><span class="assets__tag mono">Core</span></li>
+              <li><span class="coin" style="--c:#a98bff">S</span><b>Solidity</b><span class="assets__type mono">Smart contracts</span><span class="assets__tag assets__tag--v mono">Web3</span></li>
+              <li><span class="coin" style="--c:#38e8c6">P</span><b>Python</b><span class="assets__type mono">Language</span><span class="assets__tag mono">Backend</span></li>
+              <li><span class="coin" style="--c:#4fd17a">D</span><b>Django</b><span class="assets__type mono">Framework</span><span class="assets__tag mono">Backend</span></li>
+              <li><span class="coin" style="--c:#ff4fa3">F</span><b>Figma</b><span class="assets__type mono">Design</span><span class="assets__tag mono">UI</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__num section__tag mono"><span data-only="dark">// </span>03</span>
+          <h2 class="section__title"><span class="grad">Projects</span></h2>
+        </div>
+
+        <div class="projects">
+          <!-- WhiteMarket -->
+          <article class="project card glass reveal">
+            <a class="project__preview project__preview--wm" href="https://github.com/Nasju666/WhiteM" target="_blank" rel="noopener" aria-label="WhiteMarket source code on GitHub">
+              <div class="shot">
+                <div class="shot__bar"><span class="dots"><i></i><i></i><i></i></span><span class="mono">white-market · trading hub</span></div>
+                <img src="assets/projects/whitemarket.jpg" alt="Screenshot of the White Market Trading Hub home page" width="1200" height="622" loading="lazy" />
+              </div>
+            </a>
+            <div class="project__body">
+              <div class="project__top">
+                <h3 class="project__title">WhiteMarket</h3>
+                <span class="chip chip--purple" data-only="light">Web3</span>
+                <span class="pill pill--violet mono" data-only="dark">Web3</span>
+              </div>
+              <p>A blockchain-based peer-to-peer marketplace for physical goods, digital products and game accounts. Every trade goes through escrow secured by smart contracts on Ethereum, with MetaMask sign-in and a dispute-resolution flow.</p>
+              <p class="project__role"><span class="project__role-label mono">My role</span> Data Analysis Lead &amp; Crypto Analysis</p>
+              <div class="project__tags mono">
+                <span>Solidity</span><span>Ethereum</span><span>Escrow</span><span>MetaMask</span>
+              </div>
+              <div class="project__links">
+                <a class="btn btn--sm btn--yellow btn--lime" href="https://github.com/Nasju666/WhiteM" target="_blank" rel="noopener">View code on GitHub <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Rugbee Appeal (RBA) -->
+          <article class="project card glass reveal">
+            <a class="project__preview project__preview--rba" href="https://www.figma.com/proto/kL3nfT2o4xSw6khqaT16eJ/Rug-Bee-Appeal?node-id=1-2" target="_blank" rel="noopener" aria-label="Rugbee Appeal Figma prototype">
+              <div class="shot">
+                <div class="shot__bar"><span class="dots"><i></i><i></i><i></i></span><span class="mono">rugbee-appeal · figma prototype</span></div>
+                <img src="assets/projects/rugbee-appeal.jpg" alt="Screenshot of the Rugbee Appeal online store prototype" width="960" height="721" loading="lazy" />
+              </div>
+            </a>
+            <div class="project__body">
+              <div class="project__top">
+                <h3 class="project__title">Rugbee Appeal <small class="mono">RBA</small></h3>
+                <span class="chip chip--yellow" data-only="light">E-Commerce</span>
+                <span class="pill pill--lime mono" data-only="dark">E-Commerce</span>
+              </div>
+              <p>A Figma prototype of an online store for Rugbee Appeal, a local clothing brand, with a promo banner, product search, account and cart, and a photo-led lookbook hero.</p>
+              <p class="project__role"><span class="project__role-label mono">My role</span> UX Design &amp; Data Analysis</p>
+              <div class="project__tags mono">
+                <span>Figma</span><span>UI/UX</span><span>Prototype</span><span>E-Commerce</span>
+              </div>
+              <div class="project__links">
+                <a class="btn btn--sm btn--yellow btn--lime" href="https://www.figma.com/proto/kL3nfT2o4xSw6khqaT16eJ/Rug-Bee-Appeal?node-id=1-2" target="_blank" rel="noopener">Open Figma prototype <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LIGHT: EXPERIENCE ================= -->
+    <section class="section" id="experience" data-only="light">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__num">04</span>
+          <h2 class="section__title">Experience</h2>
+        </div>
+
+        <ol class="timeline has-deco">
+          <li class="deco deco--exp" aria-hidden="true"></li>
+          <li class="timeline__item reveal">
+            <span class="timeline__date">2021 — 2024</span>
+            <div class="card glass timeline__card">
+              <h3>Axie Infinity Assistant Manager &amp; Crypto Spot Trader</h3>
+              <p>Managed digital assets and developed analytical skills through crypto spot trading.</p>
+            </div>
+          </li>
+          <li class="timeline__item reveal">
+            <span class="timeline__date">2023</span>
+            <div class="card glass timeline__card">
+              <h3>Work Immersion — Electrical Installation &amp; Maintenance</h3>
+              <p>Hands-on senior high school immersion in electrical installation and maintenance work.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= LIGHT: EDUCATION ================= -->
+    <section class="section" id="education" data-only="light">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__num">05</span>
+          <h2 class="section__title">Education</h2>
+        </div>
+
+        <div class="edu has-deco">
+          <svg class="deco deco--edu" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0 L61 39 L100 50 L61 61 L50 100 L39 61 L0 50 L39 39 Z"/></svg>
+          <article class="edu__item edu__item--main card glass reveal">
+            <span class="sticker-inline">Present</span>
+            <span class="edu__level mono">College · BSIT</span>
+            <h3>Cebu Eastern College</h3>
+            <p>Leon Kilat St, Cebu City</p>
+          </article>
+          <article class="edu__item card glass reveal">
+            <span class="edu__level mono">Senior High · 2021 — 2023</span>
+            <h3>Ramon Duterte Memorial National High School</h3>
+            <p>V. Rama Ave, Cebu City</p>
+          </article>
+          <article class="edu__item card glass reveal">
+            <span class="edu__level mono">High School · 2017 — 2021</span>
+            <h3>Ramon Duterte Memorial National High School</h3>
+            <p>V. Rama Ave, Cebu City</p>
+          </article>
+          <article class="edu__item card glass reveal">
+            <span class="edu__level mono">Elementary · 2011 — 2017</span>
+            <h3>Guadalupe Elementary School</h3>
+            <p>V. Rama Ave, Cebu City</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DARK: THE CHAIN ================= -->
+    <section class="section" id="chain" data-only="dark">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__tag mono">// 04</span>
+          <h2 class="section__title">The <span class="grad">chain</span></h2>
+        </div>
+        <p class="section__sub reveal">Experience and education, one block at a time. Newest first.</p>
+
+        <ol class="chain">
+          <li class="block card glass reveal" data-kind="edu">
+            <div class="block__head mono">
+              <span class="block__num">BLOCK · PRESENT</span>
+              <span class="block__type block__type--edu">Education</span>
+            </div>
+            <h3>Cebu Eastern College</h3>
+            <p>BS Information Technology · Leon Kilat St, Cebu City</p>
+            <div class="block__hash mono"><span>hash</span> <code class="hash"></code></div>
+          </li>
+          <li class="block card glass reveal" data-kind="exp">
+            <div class="block__head mono">
+              <span class="block__num">BLOCK · 2023</span>
+              <span class="block__type block__type--exp">Experience</span>
+            </div>
+            <h3>Work Immersion: Electrical Installation &amp; Maintenance</h3>
+            <p>Hands-on senior high school immersion in electrical installation and maintenance work.</p>
+            <div class="block__hash mono"><span>hash</span> <code class="hash"></code></div>
+          </li>
+          <li class="block card glass reveal" data-kind="exp">
+            <div class="block__head mono">
+              <span class="block__num">BLOCK · 2021 – 2024</span>
+              <span class="block__type block__type--exp">Experience</span>
+            </div>
+            <h3>Axie Infinity Assistant Manager &amp; Crypto Spot Trader</h3>
+            <p>Managed digital assets and developed analytical skills through crypto spot trading.</p>
+            <div class="block__hash mono"><span>hash</span> <code class="hash"></code></div>
+          </li>
+          <li class="block card glass reveal" data-kind="edu">
+            <div class="block__head mono">
+              <span class="block__num">BLOCK · 2021 – 2023</span>
+              <span class="block__type block__type--edu">Education</span>
+            </div>
+            <h3>Ramon Duterte Memorial National High School</h3>
+            <p>Senior High School · V. Rama Ave, Cebu City</p>
+            <div class="block__hash mono"><span>hash</span> <code class="hash"></code></div>
+          </li>
+          <li class="block card glass reveal" data-kind="edu">
+            <div class="block__head mono">
+              <span class="block__num">BLOCK · 2017 – 2021</span>
+              <span class="block__type block__type--edu">Education</span>
+            </div>
+            <h3>Ramon Duterte Memorial National High School</h3>
+            <p>High School · V. Rama Ave, Cebu City</p>
+            <div class="block__hash mono"><span>hash</span> <code class="hash"></code></div>
+          </li>
+          <li class="block block--genesis card glass reveal" data-kind="edu">
+            <div class="block__head mono">
+              <span class="block__num">GENESIS · 2011 – 2017</span>
+              <span class="block__type block__type--edu">Education</span>
+            </div>
+            <h3>Guadalupe Elementary School</h3>
+            <p>Elementary · V. Rama Ave, Cebu City</p>
+            <div class="block__hash mono"><span>hash</span> <code class="hash"></code></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="section" id="contact">
+      <div class="container">
+
+        <!-- light -->
+        <div class="contact card glass reveal" data-only="light">
+          <div class="contact__text">
+            <span class="section__num">06</span>
+            <h2 class="contact__title">Let's build<br />something <mark>real</mark>.</h2>
+            <p>Have a project, an internship slot, or just want to talk Web3? My inbox is open.</p>
+          </div>
+          <div class="contact__actions">
+            <button class="contact__row js-copy" data-email="sumaragoangelo9@gmail.com">
+              <span class="contact__label mono">Email</span>
+              <span class="contact__value">sumaragoangelo9@gmail.com</span>
+              <span class="contact__hint mono js-copy-hint">Click to copy</span>
+            </button>
+            <a class="contact__row" href="tel:+639770896557">
+              <span class="contact__label mono">Phone</span>
+              <span class="contact__value">0977 089 6557</span>
+              <span class="contact__hint mono">Call →</span>
+            </a>
+            <div class="contact__row contact__row--static">
+              <span class="contact__label mono">Location</span>
+              <span class="contact__value">Guadalupe, Cebu City, PH</span>
+            </div>
+            <a href="mailto:sumaragoangelo9@gmail.com" class="btn btn--yellow btn--block">Send an email <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <!-- dark -->
+        <div class="contact card glass reveal" data-only="dark">
+          <div class="contact__text">
+            <span class="section__tag mono">// 05</span>
+            <h2 class="contact__title">Let's build<br />something <span class="grad" style="white-space:nowrap">on-chain</span>.</h2>
+            <p>Have a project, an internship slot, or just want to talk Web3? My inbox is open.</p>
+          </div>
+          <div class="send glass">
+            <div class="send__head mono">
+              <span>New message</span>
+              <span class="send__net"><span class="pulse"></span>Inbox open</span>
+            </div>
+            <button class="field js-copy" data-email="sumaragoangelo9@gmail.com">
+              <span class="field__label mono">To · Email</span>
+              <span class="field__value">sumaragoangelo9@gmail.com</span>
+              <span class="field__hint mono js-copy-hint">Copy</span>
+            </button>
+            <a class="field" href="tel:+639770896557">
+              <span class="field__label mono">Phone</span>
+              <span class="field__value">0977 089 6557</span>
+              <span class="field__hint mono">Call</span>
+            </a>
+            <div class="field field--static">
+              <span class="field__label mono">Location</span>
+              <span class="field__value">Guadalupe, Cebu City, PH</span>
+            </div>
+            <a href="mailto:sumaragoangelo9@gmail.com" class="btn btn--lime btn--block">Send message <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year">2026</span> Angelo Sumarago</span>
+
+      <a href="#home" class="footer__top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">✓ Email copied</div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
